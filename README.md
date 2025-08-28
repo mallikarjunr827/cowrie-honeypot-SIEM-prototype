@@ -20,7 +20,7 @@ This project implements a **Cowrie honeypot** deployed on an AWS EC2 instance to
 - `export_failed_logins.py` – Python script to export CSV
 - `cowrie_report.pdf` – Generated PDF report summarizing failed logins
 
--Installation
+-Overview of Installation(not completed instrections)
 1. Launch an **Ubuntu AWS EC2 instance** or any Linux machine.
 2. Update your system:
 ```bash
@@ -61,3 +61,4 @@ timestamp,src_ip,username,password
 2025-08-28T19:47:07.219370Z,51.20.253.43,fakeuser,hackmehackmehackme
 2025-08-28T19:47:20.201179Z,51.20.253.43,fakeuser,hackmeifucan
 2025-08-28T19:47:27.543293Z,51.20.253.43,fakeuser,hackmeifucan
+
