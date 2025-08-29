@@ -1,0 +1,18 @@
+import json
+import csv
+
+with open('/home/ubuntu/cowrie/var/log/cowrie/all_logs.json') as f:
+    logs = [json.loads(line) for line in f if line.strip()]
+
+with open('/home/ubuntu/cowrie/var/log/cowrie/failed_logins.csv', 'w', newline='') as csvfile:
+    fieldnames = ['timestamp', 'src_ip', 'username', 'password']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for log in logs:
+        if log.get('eventid') == 'cowrie.login.failed':
+            writer.writerow({
+                'timestamp': log.get('timestamp'),
+                'src_ip': log.get('src_ip'),
+                'username': log.get('username'),
+                'password': log.get('password')
+            })
