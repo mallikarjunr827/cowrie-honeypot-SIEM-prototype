@@ -1,0 +1,25 @@
+import json
+
+def extract_failed_logins():
+    # Load JSON logs
+    with open("/home/ubuntu/cowrie/var/log/cowrie/all_logs.json") as f:
+        logs = [json.loads(line) for line in f if line.strip()]
+
+    # Extract failed login attempts
+    login_attempts = []
+    for log in logs:
+        if log.get("eventid") == "cowrie.login.failed":
+            login_attempts.append({
+                "timestamp": log.get("timestamp"),
+                "src_ip": log.get("src_ip"),
+                "username": log.get("username"),
+                "password": log.get("password")
+            })
+
+    # Print summary
+    for attempt in login_attempts:
+        print(attempt)
+
+
+if __name__ == "__main__":
+    extract_failed_logins()
